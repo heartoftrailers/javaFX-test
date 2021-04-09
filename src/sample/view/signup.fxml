@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.SignupController">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="79.0" prefWidth="700.0" style="-fx-background-color: red;">
+         <children>
+            <Label layoutX="259.0" layoutY="25.0" text="Celestial Hotel">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="signUpFirstName" layoutX="263.0" layoutY="101.0" promptText="First Name" />
+      <TextField fx:id="signUpLastName" layoutX="263.0" layoutY="135.0" promptText="Last Name" />
+      <TextField fx:id="signUpLocation" layoutX="263.0" layoutY="169.0" promptText="Location" />
+      <TextField fx:id="signUpUsername" layoutX="264.0" layoutY="206.0" promptText="Username" />
+      <CheckBox fx:id="signUpCheckBoxMale" layoutX="264.0" layoutY="248.0" mnemonicParsing="false" text="Male" />
+      <CheckBox fx:id="signUpCheckBoxFemale" layoutX="362.0" layoutY="248.0" mnemonicParsing="false" text="Female" />
+      <Button fx:id="signUpButton" layoutX="316.0" layoutY="337.0" mnemonicParsing="false" prefWidth="69.0" text="Sign Up" />
+      <PasswordField fx:id="signUpPassword" layoutX="263.0" layoutY="287.0" promptText="Password" />
+   </children>
+</AnchorPane>
