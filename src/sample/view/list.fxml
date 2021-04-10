@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.ListController">
+   <children>
+      <AnchorPane layoutX="-6.0" prefHeight="77.0" prefWidth="721.0" style="-fx-background-color: grey;">
+         <children>
+            <TextField alignment="CENTER" layoutX="209.0" layoutY="16.0" prefHeight="37.0" prefWidth="294.0" style="-fx-background-color: grey;" text="My 2Do's">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="25.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+      <JFXListView fx:id="listTask" layoutX="428.0" layoutY="91.0" prefHeight="301.0" prefWidth="273.0">
+         <effect>
+            <DropShadow />
+         </effect>
+      </JFXListView>
+      <AnchorPane layoutX="6.0" layoutY="77.0" prefHeight="316.0" prefWidth="415.0">
+         <children>
+            <TextField fx:id="listTaskField" layoutX="8.0" layoutY="22.0" prefHeight="37.0" prefWidth="397.0" promptText="Title">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="listDescriptionField" layoutX="14.0" layoutY="84.0" prefHeight="149.0" prefWidth="389.0" promptText="Description">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <Button fx:id="listSaveTaskButton" layoutX="156.0" layoutY="256.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="106.0" style="-fx-background-color: orange;" text="Save Task" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
