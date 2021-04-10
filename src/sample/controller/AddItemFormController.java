@@ -1,10 +1,14 @@
 package sample.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import sample.Database.DatabaseHandler;
 import sample.model.Task;
@@ -15,10 +19,11 @@ public class AddItemFormController {
     private DatabaseHandler databaseHandler;
 
     @FXML
-    private ResourceBundle resources;
+    private Label successLabel ;
 
     @FXML
-    private URL location;
+    private JFXButton todosButton;
+
 
     @FXML
     private TextField taskField;
@@ -31,6 +36,8 @@ public class AddItemFormController {
 
     @FXML
     void initialize() {
+
+
         databaseHandler = new DatabaseHandler();
         saveTaskButton.setOnAction(actionEvent -> {
             Task task = new Task();
@@ -53,7 +60,28 @@ public class AddItemFormController {
                 task.setTask(taskText);
                 databaseHandler.insertTask(task);
 
-                System.out.println("Task added successfully!");
+
+                successLabel.setVisible(true);
+                todosButton.setVisible(true);
+                int taskNuber = 0;
+                try {
+                    taskNuber = databaseHandler.getAllTasks(AddItemController.userId);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                todosButton.setText("My 2Do's: " + "(" + taskNuber +")");
+
+
+                taskField.setText("");
+                descriptionField.setText("");
+
+                todosButton.setOnAction(actionEvent1 -> {
+                    // send users to the list screen
+
+                });
+//                System.out.println("Task added successfully!");
 
             }else {
                 System.out.println("Nothing added!");
