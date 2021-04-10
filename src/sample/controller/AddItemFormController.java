@@ -10,6 +10,8 @@ import sample.Database.DatabaseHandler;
 import sample.model.Task;
 
 public class AddItemFormController {
+
+    private int userId;
     private DatabaseHandler databaseHandler;
 
     @FXML
@@ -38,13 +40,37 @@ public class AddItemFormController {
             java.sql.Timestamp timestamp =
                     new java.sql.Timestamp(calendar.getTimeInMillis());
 
+            String taskText = taskField.getText().trim();
+            String taskDescription = descriptionField.getText().trim();
+            if (!taskText.equals("") || !taskDescription.equals("")) {
 
+                System.out.println("User Id: " + AddItemController.userId);
+                task.setUserId(AddItemController.userId);
 
-            task.setDatecreated(timestamp);
-            task.setDescription("My first task");
-            task.setTask("make this work");
-            databaseHandler.insertTask(task);
+//                task.setUserId(getUserId());
+                task.setDatecreated(timestamp);
+                task.setDescription(taskDescription);
+                task.setTask(taskText);
+                databaseHandler.insertTask(task);
+
+                System.out.println("Task added successfully!");
+
+            }else {
+                System.out.println("Nothing added!");
+
+            }
+
 
         });
+    }
+    public int getUserId() {
+        System.out.println("from getUserId() " + userId);
+
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+        System.out.println("From setUserId " + this.userId);
     }
 }

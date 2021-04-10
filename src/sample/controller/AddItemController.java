@@ -15,7 +15,8 @@ import javafx.util.Duration;
 import sample.animations.Shaker;
 
 public class AddItemController {
-    private int userId;
+
+    public static int userId;
 
     @FXML
     private ResourceBundle resources;
@@ -68,6 +69,17 @@ public class AddItemController {
 
                 AnchorPane formPane = FXMLLoader.load(getClass().getResource("/sample/view/addItemForm.fxml"));
 
+//                FXMLLoader loader = new FXMLLoader();
+//                loader.setLocation(getClass().getResource("/sample/view/addItemForm.fxml"));
+
+
+
+//                AddItemFormController addItemFormController =new AddItemFormController();
+//                addItemFormController.setUserId(getUserId());
+
+
+                AddItemController.userId =getUserId();
+
                 //effect from tab to other
                 FadeTransition rootTransition = new FadeTransition(Duration.millis(2000), formPane);
                 rootTransition.setFromValue(0f);
@@ -93,6 +105,7 @@ public class AddItemController {
     }
 
     public int getUserId() {
+
         return this.userId;
     }
 
