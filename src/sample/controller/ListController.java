@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 import javafx.beans.Observable;
@@ -19,15 +21,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import sample.model.Task;
 
 public class ListController {
 
     @FXML
-    private JFXListView<String> listTask;
+    private JFXListView<Task> listTask;
 
     @FXML
     private URL location;
-
 
     @FXML
     private TextField listTaskField;
@@ -37,45 +39,33 @@ public class ListController {
 
     @FXML
     private Button listSaveTaskButton;
-    ObservableList<String> listview = FXCollections.observableArrayList(
-            "alex",
-            "alex1", "Java", "Android", "JavaFX", "Prem");
+
+    private ObservableList<Task> tasks;
 
     @FXML
     void initialize() {
 
-        listTask.setItems(listview);
-        listTask.setCellFactory(param -> new JFXCell());
+        Task myTask = new Task();
+        myTask.setTask("Clean Car");
+        myTask.setDescription("need to be cleaned");
+        myTask.setDatecreated(Timestamp.valueOf(LocalDateTime.now()));
+
+        Task myTask2 = new Task();
+        myTask2.setTask("Pro");
+        myTask2.setDescription("Bye Turnu");
+        myTask2.setDatecreated(Timestamp.valueOf(LocalDateTime.now()));
+
+
+        tasks = FXCollections.observableArrayList();
+
+        tasks.addAll(myTask,myTask2);
+
+        listTask.setItems(tasks);
+        listTask.setCellFactory(CellController -> new CellController());
+
 
 
     }
-    static class JFXCell extends JFXListCell<String> {
-        //Hbox = horizontal box
 
-        HBox hBox = new HBox();
-        JFXButton helloButton = new JFXButton ("hello");
-        Label task = new Label();
-        Pane pane = new Pane();
-        Image icon = new Image("/sample/assets/gender-neutral-user.png");
-        ImageView iconImg = new ImageView(icon);
-
-        public JFXCell() {
-            super();
-
-            hBox.getChildren().addAll(iconImg, task, helloButton);
-            hBox.setHgrow(pane, Priority.ALWAYS);
-        }
-
-        public void updateItem(String taskName, boolean empty) {
-            super.updateItem(taskName, empty);
-            setText(null);
-            setGraphic(null);
-
-            if (taskName != null && !empty) {
-                task.setText(taskName);
-                setGraphic(hBox);
-            }
-        }
-    }
 }
 

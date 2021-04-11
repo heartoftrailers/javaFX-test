@@ -11,10 +11,11 @@
     <orderEntry type="library" exported="" name="javafx" level="project" />
     <orderEntry type="library" exported="" name="javafx" level="project" />
     <orderEntry type="library" exported="" name="javafx" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" exported="" name="javafx" level="project" />
+    <orderEntry type="library" exported="" name="javafx" level="project" />
     <orderEntry type="library" exported="" name="jfoenix-9.0.10" level="application" />
-    <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" name="javafx" level="project" />
+    <orderEntry type="library" exported="" name="javafx" level="project" />
+    <orderEntry type="library" exported="" name="javafx" level="project" />
+    <orderEntry type="library" exported="" name="javafx" level="project" />
   </component>
 </module>

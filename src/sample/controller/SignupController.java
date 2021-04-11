@@ -40,16 +40,21 @@ public class SignupController {
     @FXML
     private PasswordField signUpPassword;
 
+    public SignupController() {
+    }
+
     @FXML
     void initialize() {
 
         signUpButton.setOnAction(actionEvent -> {
             createUser();
 
+
         });
     }
     private void createUser() {
         DatabaseHandler databaseHandler = new DatabaseHandler();
+
 
         String name = signUpFirstName.getText();
         String lastName = signUpLastName.getText();
