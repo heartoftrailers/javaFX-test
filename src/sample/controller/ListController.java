@@ -44,6 +44,7 @@ public class ListController {
 
     @FXML
     void initialize() {
+        System.out.println("user id from cell: " + AddItemController.userId);
 
         Task myTask = new Task();
         myTask.setTask("Clean Car");

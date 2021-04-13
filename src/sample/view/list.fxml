@@ -18,19 +18,19 @@
             </TextField>
          </children>
       </AnchorPane>
-      <JFXListView fx:id="listTask" layoutX="428.0" layoutY="91.0" prefHeight="301.0" prefWidth="273.0">
+      <JFXListView fx:id="listTask" layoutX="373.0" layoutY="91.0" prefHeight="301.0" prefWidth="328.0">
          <effect>
             <DropShadow />
          </effect>
       </JFXListView>
-      <AnchorPane layoutX="6.0" layoutY="77.0" prefHeight="316.0" prefWidth="415.0">
+      <AnchorPane layoutX="14.0" layoutY="84.0" prefHeight="316.0" prefWidth="357.0">
          <children>
-            <TextField fx:id="listTaskField" layoutX="8.0" layoutY="22.0" prefHeight="37.0" prefWidth="397.0" promptText="Title">
+            <TextField fx:id="listTaskField" layoutX="8.0" layoutY="22.0" prefHeight="37.0" prefWidth="336.0" promptText="Title">
                <font>
                   <Font size="16.0" />
                </font>
             </TextField>
-            <TextField fx:id="listDescriptionField" layoutX="14.0" layoutY="84.0" prefHeight="149.0" prefWidth="389.0" promptText="Description">
+            <TextField fx:id="listDescriptionField" layoutX="14.0" layoutY="84.0" prefHeight="149.0" prefWidth="328.0" promptText="Description">
                <font>
                   <Font size="15.0" />
                </font>
