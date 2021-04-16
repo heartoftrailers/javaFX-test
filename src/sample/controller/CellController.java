@@ -2,6 +2,7 @@ package sample.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXListCell;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.Database.DatabaseHandler;
 import sample.model.Task;
 import javafx.fxml.FXMLLoader;
 
@@ -46,6 +48,8 @@ public class CellController  extends JFXListCell<Task> {
 
     private FXMLLoader fxmlLoader;
 
+    private DatabaseHandler databaseHandler;
+
     @FXML
     void initialize() {
 
@@ -74,11 +78,28 @@ public class CellController  extends JFXListCell<Task> {
             dateLabel.setText(myTask.getDatecreated().toString());
             descriptionLabel.setText(myTask.getDescription());
 
+            int taskId = myTask.getTastId();
 
 
 
-                setText(null);
-                setGraphic(rootAnchorPane);
+            deleteButton.setOnMouseClicked(event -> {
+                databaseHandler = new DatabaseHandler();
+                try {
+                    databaseHandler.deleteTask(AddItemController.userId,taskId);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                getListView().getItems().remove(getItem());
+
+            });
+
+
+
+
+            setText(null);
+            setGraphic(rootAnchorPane);
             }
         }
     }

@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.Database.DatabaseHandler;
 import sample.model.User;
+import sample.controller.LoginController;
 
 import java.io.IOException;
 import java.util.ResourceBundle;
@@ -53,30 +54,19 @@ public class SignupController {
 
         signUpButton.setOnAction(actionEvent -> {
             createUser();
-//            signUpButton.getScene().getWindow().hide();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/sample/view/login.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
 
 
         });
     }
     private void createUser() {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
 
+        DatabaseHandler databaseHandler = new DatabaseHandler();
 
         String name = signUpFirstName.getText();
         String lastName = signUpLastName.getText();
         String userName = signUpUsername.getText();
         String password = signUpPassword.getText();
+
         String location = signUpLocation.getText();
 
         String gender = "";
@@ -87,10 +77,11 @@ public class SignupController {
 
         User user = new User(name , lastName, userName, password, location, gender);
 
-
-
         databaseHandler.signUpUser(user);
 
 
+
     }
+
+
 }

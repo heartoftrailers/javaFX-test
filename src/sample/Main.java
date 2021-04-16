@@ -21,11 +21,7 @@ public class Main extends Application {
 //        DatabaseHandler databaseHandler = new DatabaseHandler();
 //        System.out.println("Current Task: " + databaseHandler.getAllTasks(1));
 
-        DatabaseHandler databaseHandler = new DatabaseHandler();
-        ResultSet resultSet = databaseHandler.getTasksByUser(4);
-        while (resultSet.next()) {
-            System.out.println("User tasks: " + resultSet.getString("task"));
-        }
+
     }
 
 

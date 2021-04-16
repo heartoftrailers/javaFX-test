@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListCell;
 import com.jfoenix.controls.JFXListView;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
@@ -21,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
+import sample.Database.DatabaseHandler;
 import sample.model.Task;
 
 public class ListController {
@@ -41,25 +44,27 @@ public class ListController {
     private Button listSaveTaskButton;
 
     private ObservableList<Task> tasks;
+    private DatabaseHandler databaseHandler;
 
     @FXML
-    void initialize() {
-        System.out.println("user id from cell: " + AddItemController.userId);
-
-        Task myTask = new Task();
-        myTask.setTask("Clean Car");
-        myTask.setDescription("need to be cleaned");
-        myTask.setDatecreated(Timestamp.valueOf(LocalDateTime.now()));
-
-        Task myTask2 = new Task();
-        myTask2.setTask("Pro");
-        myTask2.setDescription("Bye Turnu");
-        myTask2.setDatecreated(Timestamp.valueOf(LocalDateTime.now()));
-
+    void initialize() throws SQLException {
 
         tasks = FXCollections.observableArrayList();
+        databaseHandler = new DatabaseHandler();
 
-        tasks.addAll(myTask,myTask2);
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+        ResultSet resultSet = databaseHandler.getTasksByUser(AddItemController.userId);
+        while (resultSet.next()) {
+            Task task = new Task();
+            task.setTastId(resultSet.getInt("taskid"));
+            task.setTask(resultSet.getString("task"));
+            task.setDatecreated(resultSet.getTimestamp("datecreated"));
+            task.setDescription(resultSet.getString("description"));
+
+            System.out.println("User tasks: " + resultSet.getString("task"));
+            tasks.addAll(task);
+        }
+
 
         listTask.setItems(tasks);
         listTask.setCellFactory(CellController -> new CellController());
