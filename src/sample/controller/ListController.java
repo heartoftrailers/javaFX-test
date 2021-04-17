@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import javafx.beans.Observable;
@@ -44,6 +45,7 @@ public class ListController {
     private Button listSaveTaskButton;
 
     private ObservableList<Task> tasks;
+
     private DatabaseHandler databaseHandler;
 
     @FXML
@@ -68,8 +70,40 @@ public class ListController {
 
         listTask.setItems(tasks);
         listTask.setCellFactory(CellController -> new CellController());
+        listSaveTaskButton.setOnAction(event -> {
+            addNewTask();
+        });
 
 
+
+
+    }
+    public void addNewTask(){
+            if (!listTaskField.getText().equals("") || listDescriptionField.getText().equals("")) {
+                Task myNewTask = new Task();
+
+                Calendar calendar = Calendar.getInstance();
+
+                java.sql.Timestamp timestamp =
+                        new java.sql.Timestamp(calendar.getTimeInMillis());
+
+                myNewTask.setUserId(AddItemController.userId);
+                myNewTask.setTask(listTaskField.getText().trim());
+                myNewTask.setDescription(listDescriptionField.getText().trim());
+                myNewTask.setDatecreated(timestamp);
+                databaseHandler.insertTask(myNewTask);
+                listTaskField.setText("");
+                listDescriptionField.setText("");
+
+
+                // auto refresh tasks
+                try {
+                    initialize();
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+
+            }
 
     }
 
